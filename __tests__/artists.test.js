@@ -45,7 +45,7 @@ describe('artists routes', () => {
     expect(resp.body).toEqual(expected);
   });
 
-  it('displays a single artists info by ID', async () => {
+  it('displays a single entry from artists by ID', async () => {
     const expected = {
       id: 1,
       artist: 'Chip Tanaka',
@@ -54,6 +54,21 @@ describe('artists routes', () => {
     };
 
     const resp = await request(app).get('/api/v1/artists/1');
+
+    expect(resp.body).toEqual(expected);
+  });
+
+  it('updates an existing entry in the artists table', async () => {
+    const expected = {
+      id: 2,
+      artist: 'Matthew Applegate',
+      originYear: 1999,
+      isActive: true,
+    };
+
+    const resp = await request(app)
+      .patch('/api/v1/artists/2')
+      .send({ artist: 'Matthew Applegate' });
 
     expect(resp.body).toEqual(expected);
   });
