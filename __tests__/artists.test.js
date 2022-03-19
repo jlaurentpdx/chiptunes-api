@@ -23,4 +23,25 @@ describe('artists routes', () => {
 
     expect(resp.body).toEqual({ id: expect.any(Number), ...expected });
   });
+
+  it('displays the list of artists', async () => {
+    const expected = [
+      {
+        id: 1,
+        artist: 'Chip Tanaka',
+        originYear: 1980,
+        isActive: true,
+      },
+      {
+        id: 2,
+        artist: 'Pixelh8',
+        originYear: 1999,
+        isActive: true,
+      },
+    ];
+
+    const resp = await request(app).get('/api/v1/artists');
+
+    expect(resp.body).toEqual(expected);
+  });
 });
