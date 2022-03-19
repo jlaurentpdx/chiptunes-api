@@ -14,7 +14,8 @@ CREATE TABLE artists (
 INSERT INTO artists (artist, name, origin_year, active)
 VALUES 
     ('Chip Tanaka', 'Hirokazu Tanaka', 1980, TRUE),
-    ('Pixelh8', 'Matthew Applegate', 1999, TRUE);
+    ('Pixelh8', 'Matthew Applegate', 1999, TRUE),
+    ('+TEK', 'name unknown', 2013, TRUE);
 
 CREATE TABLE albums (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,

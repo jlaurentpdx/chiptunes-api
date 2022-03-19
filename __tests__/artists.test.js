@@ -39,6 +39,12 @@ describe('artists routes', () => {
         originYear: 1999,
         isActive: true,
       },
+      {
+        id: 3,
+        artist: '+TEK',
+        originYear: 2013,
+        isActive: true,
+      },
     ];
 
     const resp = await request(app).get('/api/v1/artists');
@@ -75,9 +81,14 @@ describe('artists routes', () => {
   });
 
   it('deletes an existing entry in the artists table', async () => {
-    const expected = Artist.findById(2);
-    const resp = await request(app).delete('/api/v1/artists/2');
+    const artistsInclude = await Artist.findAll();
+    const expected = await Artist.findById(3);
+    const resp = await request(app).delete(`/api/v1/artists/${expected.id}`);
 
     expect(resp.body).toEqual(expected);
+
+    const artistsExclude = await Artist.findAll();
+
+    expect(artistsInclude).not.toEqual(artistsExclude);
   });
 });
