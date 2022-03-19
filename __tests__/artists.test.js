@@ -65,6 +65,17 @@ describe('artists routes', () => {
     expect(resp.body).toEqual(expected);
   });
 
+  it('routes to 404 error when ID does not match a table entry', async () => {
+    const expected = {
+      message: 'No matching table entry for ID: 99.',
+      status: 404,
+    };
+
+    const resp = await request(app).get('/api/v1/artists/99');
+
+    expect(resp.body).toEqual(expected);
+  });
+
   it('updates an existing entry in the artists table', async () => {
     const expected = {
       id: 2,
