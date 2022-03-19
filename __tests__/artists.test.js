@@ -44,4 +44,17 @@ describe('artists routes', () => {
 
     expect(resp.body).toEqual(expected);
   });
+
+  it('displays a single artists info by ID', async () => {
+    const expected = {
+      id: 1,
+      artist: 'Chip Tanaka',
+      originYear: 1980,
+      isActive: true,
+    };
+
+    const resp = await request(app).get('/api/v1/artists/1');
+
+    expect(resp.body).toEqual(expected);
+  });
 });
