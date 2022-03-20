@@ -66,19 +66,14 @@ describe('artists routes', () => {
   });
 
   it('routes to 404 error when ID does not match a table entry', async () => {
-    const expected = {
-      message: 'No matching table entry for ID: 99.',
-      status: 404,
-    };
+    const resp = await request(app).get('/api/v1/artists/fake-entry');
 
-    const resp = await request(app).get('/api/v1/artists/99');
-
-    expect(resp.body).toEqual(expected);
+    expect(resp.status).toEqual(404);
   });
 
   it('updates an existing entry in the artists table', async () => {
     const expected = {
-      id: 2,
+      id: expect.any(Number),
       artist: 'Matthew Applegate',
       originYear: 1999,
       isActive: true,
@@ -92,14 +87,13 @@ describe('artists routes', () => {
   });
 
   it('deletes an existing entry in the artists table', async () => {
-    const artistsInclude = await Artist.findAll();
     const expected = await Artist.findById(3);
     const resp = await request(app).delete(`/api/v1/artists/${expected.id}`);
 
     expect(resp.body).toEqual(expected);
 
-    const artistsExclude = await Artist.findAll();
+    const artistsExcludeDeleted = await Artist.findAll();
 
-    expect(artistsInclude).not.toEqual(artistsExclude);
+    expect(artistsExcludeDeleted).not.toContainEqual(expected);
   });
 });
