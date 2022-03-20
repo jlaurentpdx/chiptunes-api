@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const Album = require('../lib/models/Album');
 
 describe('albums table routes', () => {
   beforeEach(() => {
@@ -87,5 +88,16 @@ describe('albums table routes', () => {
       .send({ ...expected, source: 'chiptanaka.bandcamp.com' });
 
     expect(resp.body).toEqual(expected);
+  });
+
+  it('deletes an existing entry in the albums table', async () => {
+    const expected = await Album.findById(2);
+    const resp = await request(app).delete(`/api/v1/albums/${expected.id}`);
+
+    expect(resp.body).toEqual(expected);
+
+    const albumsExcludeDeleted = await Album.findAll();
+
+    expect(albumsExcludeDeleted).not.toContainEqual(expected);
   });
 });
