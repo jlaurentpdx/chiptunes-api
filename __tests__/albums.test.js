@@ -8,7 +8,7 @@ describe('albums table routes', () => {
     return setup(pool);
   });
 
-  afterEach(() => {
+  afterAll(() => {
     pool.end();
   });
 
@@ -24,5 +24,30 @@ describe('albums table routes', () => {
     const resp = await request(app).post('/api/v1/albums').send(expected);
 
     expect(resp.body).toEqual({ id: expect.any(Number), ...expected });
+  });
+
+  it('displays the list of albums', async () => {
+    const expected = [
+      {
+        id: expect.any(Number),
+        title: 'Domani',
+        artist: 1,
+        released: 2021,
+        price: 13.29,
+        source: 'Bandcamp',
+      },
+      {
+        id: expect.any(Number),
+        title: 'Domingo',
+        artist: 1,
+        released: 2020,
+        price: 11.74,
+        source: 'Bandcamp',
+      },
+    ];
+
+    const resp = await request(app).get('/api/v1/albums');
+
+    expect(resp.body).toEqual(expected);
   });
 });

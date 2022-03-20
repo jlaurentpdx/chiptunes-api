@@ -34,12 +34,12 @@ CREATE TABLE albums (
 INSERT INTO albums(title, artist, released, price, source)
 VALUES 
     ('Domani', 1, 2021, 13.29, 'Bandcamp'),
-    ('Domingo', 1, 2020, 11.74, 'Bandcamp'),
-    ('Django', 1, 2017, 11.74, 'Bandcamp'),
-    ('Observations', 2, 2010, null, null),
-    ('And The Revolution', 2, 2009, null, null),
-    ('Obsolete?', 2, 2009, null, null),
-    ('The Boy With The Digital Heart', 2, 2007, null, null);
+    ('Domingo', 1, 2020, 11.74, 'Bandcamp');
+    -- ('Django', 1, 2017, 11.74, 'Bandcamp'),
+    -- ('Observations', 2, 2010, null, null),
+    -- ('And The Revolution', 2, 2009, null, null),
+    -- ('Obsolete?', 2, 2009, null, null),
+    -- ('The Boy With The Digital Heart', 2, 2007, null, null);
 
 -- Genres seed
 CREATE TABLE genres (
