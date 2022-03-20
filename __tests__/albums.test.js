@@ -71,4 +71,21 @@ describe('albums table routes', () => {
 
     expect(resp.status).toEqual(404);
   });
+
+  it('updates an existing entry in the albums table', async () => {
+    const expected = {
+      id: expect.any(Number),
+      title: 'Domingo',
+      artist: 1,
+      released: 2020,
+      price: 11.74,
+      source: 'chiptanaka.bandcamp.com',
+    };
+
+    const resp = await request(app)
+      .patch('/api/v1/albums/2')
+      .send({ ...expected, source: 'chiptanaka.bandcamp.com' });
+
+    expect(resp.body).toEqual(expected);
+  });
 });
