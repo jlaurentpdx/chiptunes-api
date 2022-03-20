@@ -3,6 +3,7 @@
 
 DROP TABLE IF EXISTS artists, albums, genres, hardware, software;
 
+-- Artists seed
 CREATE TABLE artists (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     artist TEXT NOT NULL,
@@ -17,6 +18,7 @@ VALUES
     ('Pixelh8', 'Matthew Applegate', 1999, TRUE),
     ('+TEK', 'name unknown', 2013, TRUE);
 
+-- Albums seed
 CREATE TABLE albums (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title TEXT NOT NULL,
@@ -37,10 +39,9 @@ VALUES
     ('Observations', 2, 2010, null, null),
     ('And The Revolution', 2, 2009, null, null),
     ('Obsolete?', 2, 2009, null, null),
-    ('The Boy With The Digital Heart', 2, 2007, null, null),
-    ('Videogames Ruined My Life', 2, 2007, null, null);
+    ('The Boy With The Digital Heart', 2, 2007, null, null);
 
-
+-- Genres seed
 CREATE TABLE genres (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     genre TEXT NOT NULL,
@@ -54,6 +55,7 @@ VALUES
     ('Bitpop', 'Subgenre of chiptunes that features a mix of equipment old and new, blending PSGs with live synths and other instrumentation.', ARRAY['Chipzel', 'Welle:Erdball']), 
     ('Nintendocore', 'Where post-hardcore meets chiptunes. Nintendocore mixes PSG sounds and samples with rock and metal instruments and influence.', ARRAY['Horse the Band', 'The Deprecation Guild']);
 
+-- Hardware seed
 CREATE TABLE hardware (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     device TEXT NOT NULL,
@@ -68,6 +70,7 @@ VALUES
     ('Game Boy (original)', 'Console', 'Nintendo', 'GB-Z80', 4),
     ('Commodore 64', 'Home computer', 'Commodore International', 'SID 6581/8580', 3);
 
+-- Software seed
 CREATE TABLE software (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     program TEXT NOT NULL,
