@@ -50,4 +50,19 @@ describe('albums table routes', () => {
 
     expect(resp.body).toEqual(expected);
   });
+
+  it('displays a single entry from albums by ID', async () => {
+    const expected = {
+      id: expect.any(Number),
+      title: 'Domingo',
+      artist: 1,
+      released: 2020,
+      price: 11.74,
+      source: 'Bandcamp',
+    };
+
+    const resp = await request(app).get('/api/v1/albums/2');
+
+    expect(resp.body).toEqual(expected);
+  });
 });
