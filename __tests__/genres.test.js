@@ -40,4 +40,18 @@ describe('genres routes', () => {
 
     expect(resp.body).toEqual(expect.arrayContaining(expected));
   });
+
+  it('displays a single entry from genres by ID', async () => {
+    const expected = {
+      id: 1,
+      genre: 'Chiptunes',
+      description:
+        'A broad class of music made with PSGs or their emulations, often in the form of 8-bit sonic wizardry.',
+      artists: ['Chip Tanaka', 'Pixelh8'],
+    };
+
+    const resp = await request(app).get('/api/v1/genres/1');
+
+    expect(resp.body).toEqual(expected);
+  });
 });
