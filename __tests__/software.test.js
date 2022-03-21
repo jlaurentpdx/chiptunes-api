@@ -29,7 +29,7 @@ describe('software routes', () => {
       {
         id: expect.any(Number),
         program: 'LittleSoundDJ (LSDJ)',
-        recent_version: 'v9.2.6',
+        recentVersion: 'v9.2.6',
         type: 'Sequencer',
         developer: 'Johan Kotlinski',
       },
