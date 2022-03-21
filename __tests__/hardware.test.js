@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const Hardware = require('../lib/models/Hardware');
 
 describe('hardware routes', () => {
   beforeEach(() => {
@@ -79,5 +80,16 @@ describe('hardware routes', () => {
       .send({ device: 'Game Boy (1989)' });
 
     expect(resp.body).toEqual(expected);
+  });
+
+  it('deletes an existing entry in the hardware table', async () => {
+    const expected = await Hardware.findById(2);
+    const resp = await request(app).delete('/api/v1/hardware/2');
+
+    expect(resp.body).toEqual(expected);
+
+    const hardwareExcludeDeleted = await Hardware.findAll();
+
+    expect(hardwareExcludeDeleted).not.toContainEqual(expected);
   });
 });
