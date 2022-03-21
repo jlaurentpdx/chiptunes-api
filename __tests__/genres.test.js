@@ -24,4 +24,20 @@ describe('genres routes', () => {
 
     expect(resp.body).toEqual({ id: expect.any(Number), ...expected });
   });
+
+  it('displays the list of genres', async () => {
+    const expected = [
+      {
+        id: expect.any(Number),
+        genre: 'Chiptunes',
+        description:
+          'A broad class of music made with PSGs or their emulations, often in the form of 8-bit sonic wizardry.',
+        artists: ['Chip Tanaka', 'Pixelh8'],
+      },
+    ];
+
+    const resp = await request(app).get('/api/v1/genres');
+
+    expect(resp.body).toEqual(expect.arrayContaining(expected));
+  });
 });
