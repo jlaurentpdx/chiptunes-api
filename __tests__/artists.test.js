@@ -28,15 +28,9 @@ describe('artists routes', () => {
   it('displays the list of artists', async () => {
     const expected = [
       {
-        id: 1,
+        id: expect.any(Number),
         artist: 'Chip Tanaka',
         originYear: 1980,
-        isActive: true,
-      },
-      {
-        id: 2,
-        artist: 'Pixelh8',
-        originYear: 1999,
         isActive: true,
       },
     ];

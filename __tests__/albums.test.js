@@ -37,14 +37,6 @@ describe('albums table routes', () => {
         price: 13.29,
         source: 'Bandcamp',
       },
-      {
-        id: expect.any(Number),
-        title: 'Domingo',
-        artist: 1,
-        released: 2020,
-        price: 11.74,
-        source: 'Bandcamp',
-      },
     ];
 
     const resp = await request(app).get('/api/v1/albums');
