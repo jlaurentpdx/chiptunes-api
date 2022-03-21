@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const Genre = require('../lib/models/Genre');
 
 describe('genres routes', () => {
   beforeEach(() => {
@@ -78,5 +79,16 @@ describe('genres routes', () => {
       });
 
     expect(resp.body).toEqual(expected);
+  });
+
+  it('deletes an existing entry in the genres table', async () => {
+    const expected = await Genre.findById(2);
+    const resp = await request(app).delete(`/api/v1/genres/${expected.id}`);
+
+    expect(resp.body).toEqual(expected);
+
+    const genresExcludeDeleted = await Genre.findAll();
+
+    expect(genresExcludeDeleted).not.toContainEqual(expected);
   });
 });
