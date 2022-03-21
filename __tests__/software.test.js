@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const Software = require('../lib/models/Software');
 
 describe('software routes', () => {
   beforeEach(() => {
@@ -68,9 +69,20 @@ describe('software routes', () => {
     };
 
     const resp = await request(app)
-      .patch('/api/v1/software/1')
+      .patch(`/api/v1/software/${expected.id}`)
       .send({ type: 'Tracker' });
 
     expect(resp.body).toEqual(expected);
+  });
+
+  it('deletes an existing entry in the software table', async () => {
+    const expected = await Software.findById(2);
+    const resp = await request(app).delete(`/api/v1/software/${expected.id}`);
+
+    expect(resp.body).toEqual(expected);
+
+    const softwareExcludeDeleted = await Software.findAll();
+
+    expect(softwareExcludeDeleted).not.toContainEqual(expected);
   });
 });
