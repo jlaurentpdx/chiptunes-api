@@ -57,4 +57,10 @@ describe('hardware routes', () => {
 
     expect(resp.body).toEqual(expected);
   });
+
+  it('routes to 404 error when ID does not match a table entry', async () => {
+    const resp = await request(app).get('/api/v1/hardware/fake-hardware');
+
+    expect(resp.status).toEqual(404);
+  });
 });
