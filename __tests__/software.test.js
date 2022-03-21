@@ -38,4 +38,17 @@ describe('software routes', () => {
 
     expect(resp.body).toEqual(expect.arrayContaining(expected));
   });
+
+  it('displays a single entry in the software table', async () => {
+    const expected = {
+      id: 1,
+      program: 'LittleSoundDJ (LSDJ)',
+      recentVersion: 'v9.2.6',
+      type: 'Sequencer',
+      developer: 'Johan Kotlinski',
+    };
+    const resp = await request(app).get('/api/v1/software/1');
+
+    expect(resp.body).toEqual(expected);
+  });
 });
