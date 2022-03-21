@@ -23,4 +23,19 @@ describe('software routes', () => {
 
     expect(resp.body).toEqual({ id: expect.any(Number), ...expected });
   });
+
+  it('displays the list of software', async () => {
+    const expected = [
+      {
+        id: expect.any(Number),
+        program: 'LittleSoundDJ (LSDJ)',
+        recent_version: 'v9.2.6',
+        type: 'Sequencer',
+        developer: 'Johan Kotlinski',
+      },
+    ];
+    const resp = await request(app).get('/api/v1/software');
+
+    expect(resp.body).toEqual(expect.arrayContaining(expected));
+  });
 });
