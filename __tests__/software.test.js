@@ -16,7 +16,7 @@ describe('software routes', () => {
     const expected = {
       program: 'MilkyTracker',
       recentVersion: '1.03',
-      type: 'tracker',
+      type: 'Tracker',
       developer: 'Lyubomyr Lisen',
     };
     const resp = await request(app).post('/api/v1/software').send(expected);
@@ -56,5 +56,21 @@ describe('software routes', () => {
     const resp = await request(app).get('/api/v1/software/fake-software');
 
     expect(resp.status).toEqual(404);
+  });
+
+  it('updates an existing entry in the software table', async () => {
+    const expected = {
+      id: 1,
+      program: 'LittleSoundDJ (LSDJ)',
+      recentVersion: 'v9.2.6',
+      type: 'Tracker',
+      developer: 'Johan Kotlinski',
+    };
+
+    const resp = await request(app)
+      .patch('/api/v1/software/1')
+      .send({ type: 'Tracker' });
+
+    expect(resp.body).toEqual(expected);
   });
 });
