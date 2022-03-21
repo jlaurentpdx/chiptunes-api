@@ -42,4 +42,19 @@ describe('hardware routes', () => {
 
     expect(resp.body).toEqual(expect.arrayContaining(expected));
   });
+
+  it('displays a single entry from hardware by ID', async () => {
+    const expected = {
+      id: 1,
+      device: 'Game Boy (original)',
+      type: 'Console',
+      manufacturer: 'Nintendo',
+      chip: 'GB-Z80',
+      channels: 4,
+    };
+
+    const resp = await request(app).get('/api/v1/hardware/1');
+
+    expect(resp.body).toEqual(expected);
+  });
 });
