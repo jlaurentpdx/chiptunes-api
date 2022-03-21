@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const artists = require('../lib/controllers/artists');
 
 describe('genres routes', () => {
   beforeEach(() => {
@@ -59,5 +60,24 @@ describe('genres routes', () => {
     const resp = await request(app).get('/api/v1/genres/fake-genre');
 
     expect(resp.status).toEqual(404);
+  });
+
+  it('updates an existing entry in the genres table', async () => {
+    const expected = {
+      id: 1,
+      genre: 'Chip Music',
+      description:
+        'A broad class of music made with PSGs or their emulations, often in the form of 8-bit sonic wizardry.',
+      artists: ['Chip Tanaka', 'Pixelh8', '+TEK'],
+    };
+
+    const resp = await request(app)
+      .patch('/api/v1/genres/1')
+      .send({
+        genre: 'Chip Music',
+        artists: ['Chip Tanaka', 'Pixelh8', '+TEK'],
+      });
+
+    expect(resp.body).toEqual(expected);
   });
 });
