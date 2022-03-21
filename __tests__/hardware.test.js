@@ -25,4 +25,21 @@ describe('hardware routes', () => {
 
     expect(resp.body).toEqual({ id: expect.any(Number), ...expected });
   });
+
+  it('displays a list of hardware', async () => {
+    const expected = [
+      {
+        id: expect.any(Number),
+        device: 'Game Boy (original)',
+        type: 'Console',
+        manufacturer: 'Nintendo',
+        chip: 'GB-Z80',
+        channels: 4,
+      },
+    ];
+
+    const resp = await request(app).get('/api/v1/hardware');
+
+    expect(resp.body).toEqual(expect.arrayContaining(expected));
+  });
 });
