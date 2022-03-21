@@ -34,12 +34,12 @@ CREATE TABLE albums (
 INSERT INTO albums(title, artist, released, price, source)
 VALUES 
     ('Domani', 1, 2021, 13.29, 'Bandcamp'),
-    ('Domingo', 1, 2020, 11.74, 'Bandcamp');
-    -- ('Django', 1, 2017, 11.74, 'Bandcamp'),
-    -- ('Observations', 2, 2010, null, null),
-    -- ('And The Revolution', 2, 2009, null, null),
-    -- ('Obsolete?', 2, 2009, null, null),
-    -- ('The Boy With The Digital Heart', 2, 2007, null, null);
+    ('Domingo', 1, 2020, 11.74, 'Bandcamp'),
+    ('Django', 1, 2017, 11.74, 'Bandcamp'),
+    ('Observations', 2, 2010, null, null),
+    ('And The Revolution', 2, 2009, null, null),
+    ('Obsolete?', 2, 2009, null, null),
+    ('The Boy With The Digital Heart', 2, 2007, null, null);
 
 -- Genres seed
 CREATE TABLE genres (
@@ -52,8 +52,7 @@ CREATE TABLE genres (
 INSERT INTO genres(genre, description, artists)
 VALUES 
     ('Chiptunes', 'A broad class of music made with PSGs or their emulations, often in the form of 8-bit sonic wizardry.', ARRAY['Chip Tanaka', 'Pixelh8']), 
-    ('Bitpop', 'Subgenre of chiptunes that features a mix of equipment old and new, blending PSGs with live synths and other instrumentation.', ARRAY['Chipzel', 'Welle:Erdball']), 
-    ('Nintendocore', 'Where post-hardcore meets chiptunes. Nintendocore mixes PSG sounds and samples with rock and metal instruments and influence.', ARRAY['Horse the Band', 'The Deprecation Guild']);
+    ('Bitpop', 'Subgenre of chiptunes that features a mix of equipment old and new, blending PSGs with live synths and other instrumentation.', ARRAY['Chipzel', 'Welle:Erdball']);
 
 -- Hardware seed
 CREATE TABLE hardware (

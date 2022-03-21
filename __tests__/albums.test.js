@@ -49,7 +49,7 @@ describe('albums table routes', () => {
 
     const resp = await request(app).get('/api/v1/albums');
 
-    expect(resp.body).toEqual(expected);
+    expect(resp.body).toEqual(expect.arrayContaining(expected));
   });
 
   it('displays a single entry from albums by ID', async () => {

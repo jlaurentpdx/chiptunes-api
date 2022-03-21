@@ -39,17 +39,11 @@ describe('artists routes', () => {
         originYear: 1999,
         isActive: true,
       },
-      {
-        id: 3,
-        artist: '+TEK',
-        originYear: 2013,
-        isActive: true,
-      },
     ];
 
     const resp = await request(app).get('/api/v1/artists');
 
-    expect(resp.body).toEqual(expected);
+    expect(resp.body).toEqual(expect.arrayContaining(expected));
   });
 
   it('displays a single entry from artists by ID', async () => {
