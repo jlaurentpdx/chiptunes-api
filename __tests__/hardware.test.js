@@ -63,4 +63,21 @@ describe('hardware routes', () => {
 
     expect(resp.status).toEqual(404);
   });
+
+  it('updates an existing entry in the hardware table', async () => {
+    const expected = {
+      id: 1,
+      device: 'Game Boy (1989)',
+      type: 'Console',
+      manufacturer: 'Nintendo',
+      chip: 'GB-Z80',
+      channels: 4,
+    };
+
+    const resp = await request(app)
+      .patch('/api/v1/hardware/1')
+      .send({ device: 'Game Boy (1989)' });
+
+    expect(resp.body).toEqual(expected);
+  });
 });
